@@ -5,7 +5,8 @@
       <button @click="alertId">弹出id</button>
       <h1>id:{{id}}-name:{{name}}---age:{{age}}</h1>
       <h1 ref="introduction">{{sayHi('男')}}</h1>
-      <my-button type="info">我是按钮</my-button>
+      <my-button :type="type">我是按钮</my-button>
+      <button @click="type = 'error'">变红色</button>
   </section>
 </template>
 
@@ -17,6 +18,7 @@ export default defineComponent({
     MyButton: defineAsyncComponent(()=>import('@/components/myButton')),
   },
   setup(){
+    let type = ref('info')
     const id = ref(1);
     const user = reactive({
       name: 'Suk',
@@ -44,7 +46,8 @@ export default defineComponent({
       alertName,
       alertId,
       sayHi,
-      introduction
+      introduction,
+      type
     }
   }
 })

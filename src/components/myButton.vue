@@ -11,6 +11,8 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: 'MyButton',
+  setup({type}) {
+  },
   props: {
     type: {
       type: String

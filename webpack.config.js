@@ -51,7 +51,7 @@ module.exports = {
     hot: true, // 开启webpack的HMR热替换
     port: 443,
     https: true,
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, 'dist'), // 告诉webpack资源从服务器的哪里加载
     // publicPath: '/dist', // 使用绝对路径
     compress: true //开发服务器是否启动gzip等压缩
   },
@@ -80,7 +80,7 @@ module.exports = {
          */
         use: [
           {
-            loader: 'vue-style-loader'
+            loader: 'style-loader'
           },
           {
             loader: 'css-loader'
@@ -140,6 +140,8 @@ module.exports = {
   },
   // plugins能对webpack监听一些事件做出一些处理
   plugins: [
+    // HMR热替换插件,不用刷新页面就能看到最新修改
+    new webpack.HotModuleReplacementPlugin(),
     // 压缩js
     // new UglifyJSPlugin(),
     // 处理生成html
@@ -161,8 +163,6 @@ module.exports = {
     new VueLoaderPlugin(),
     // 打包体积分析插件
     // new BundleAnalyzerPlugin(),
-    // HMR热替换插件,不用刷新页面就能看到最新修改
-    new webpack.HotModuleReplacementPlugin(),
     new HappyPack({
       id: 'babel',
       // 配置线程池
